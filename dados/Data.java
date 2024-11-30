@@ -66,7 +66,7 @@ public class Data {
 	 * @param minutos O valor dos minutos.
 	 */
 	public Data(int dia, int mes, int ano, int horas, int minutos) {
-		if (this.verificaData(dia, mes, ano, horas, minutos) == 1) {
+		if (this.verificaData(dia, mes, ano, horas, minutos) == 1 || this.verificaData(dia, mes, ano, horas, minutos) == 2) {
 			this.dia = dia;
 			this.mes = mes;
 			this.ano = ano;
@@ -90,9 +90,9 @@ public class Data {
 	 * @param ano     O valor do ano.
 	 * @param horas   O valor das horas.
 	 * @param minutos O valor dos minutos.
-	 * @return 0 para data invalida e 1 para data valida.
+	 * @return 0 para data invalida e 1 para data valida e 2 para data futura.
 	 */
-	protected int verificaData(int dia, int mes, int ano, int horas, int minutos) {
+	public int verificaData(int dia, int mes, int ano, int horas, int minutos) {
 		// Verificacao de parametros validos
 		if (dia > 31 || dia < 1 || mes > 12 || mes < 1 || ano < 2000 || horas < 0 || horas > 24 || minutos < 0
 				|| minutos > 59) {
@@ -104,7 +104,7 @@ public class Data {
 
 		// Verificacao se o ano passado como parametro é menor que o ano atual
 		if (anoAtual < ano) {
-			return 0;
+			return 2;
 		}
 
 		// Ano atual (data do SO)
@@ -112,7 +112,7 @@ public class Data {
 			// Mes atual (data do SO)
 			if (mes == mesAtual) {
 				if (dia > diaAtual) {
-					return 0;
+					return 2;
 				}
 				return 1;
 			}
@@ -146,6 +146,39 @@ public class Data {
 
 		return 1;
 
+	}
+
+	/**
+	 * Metodo que retorna a diferenca entre duas datas em meses.
+	 * 
+	 * @param data A data a ser comparada.
+	 * @return A diferenca em meses.
+	 */
+	public int mesesDiferenca(Data data) {
+		if (this.comparaData(data) == -1) {
+			if (this.getAno() == data.getAno()) {
+				return data.getMes() - this.getMes();
+			}
+			int anos = data.getAno() - this.getAno();
+			int meses = 0;
+			if (data.getMes() < this.getMes()) {
+				meses = (12 + data.getMes()) - this.getMes();
+			} else {
+				meses = data.getMes() - this.getMes();
+			}
+			return (12 * anos) + meses;
+		}
+		if (this.getAno() == data.getAno()) {
+			return this.getMes() - data.getMes();
+		}
+		int anos = this.getAno() - data.getAno();
+		int meses = 0;
+		if (this.getMes() < data.getMes()) {
+			meses = (12 + this.getMes()) - data.getMes();
+		} else {
+			meses = this.getMes() - data.getMes();
+		}
+		return (12 * anos) + meses;
 	}
 
 	/**
@@ -195,8 +228,10 @@ public class Data {
 
 	/**
 	 * Metodo de comparacao de datas sem levar em consideracao o horario.
+	 * 
 	 * @param data A data a ser comparada.
-	 * @return -1 para data (parametro) mais recente, 0 para dias iguais e 1 para data (parametro) mais antiga.
+	 * @return -1 para data (parametro) mais recente, 0 para dias iguais e 1 para
+	 *         data (parametro) mais antiga.
 	 */
 	public int comparaData(Data data) {
 		if (this.getAno() > data.getAno()) {
@@ -205,7 +240,7 @@ public class Data {
 		if (this.getAno() < data.getAno()) {
 			return -1;
 		}
-		
+
 		if (this.getMes() > data.getMes()) {
 			return 1;
 		}
@@ -220,11 +255,13 @@ public class Data {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Metodo de comparacao de horas.
+	 * 
 	 * @param data A data cujo horario sera comparado.
-	 * @return 1 para horario menor da data passada como parametro, 0 para horario igual e -1 para horario maior da data passada como parametro.
+	 * @return 1 para horario menor da data passada como parametro, 0 para horario
+	 *         igual e -1 para horario maior da data passada como parametro.
 	 */
 	public int comparaHoras(Data data) {
 		if (this.getHoras() > data.getHoras()) {
@@ -235,10 +272,12 @@ public class Data {
 		}
 		return 0;
 	}
+
 	/**
 	 * Representa a data como String.
 	 * 
-	 * @return Uma string que representa a data no formato dd/mm/yyyy e o horario no formato hh:mm
+	 * @return Uma string que representa a data no formato dd/mm/yyyy e o horario no
+	 *         formato hh:mm
 	 */
 	public String toStringFormato1() {
 		return "Data e hora nos formatos: dd/mm/yyyy e hh:mm\n" + "Data: " + this.getDia() + "/" + this.getMes() + "/"
@@ -253,11 +292,23 @@ public class Data {
 
 	/**
 	 * Representa a data como string.
-	 * @return Uma string que representa a data no formato: DIA de MES de ANO, as HORAS horas e MINUTOS minutos.
+	 * 
+	 * @return Uma string que representa a data no formato: DIA de MES de ANO, as
+	 *         HORAS horas e MINUTOS minutos.
 	 */
 	public String toStringFormato2() {
 		return "Data e hora nos formatos: DIA de MES de ANO, as HORAS horas e MINUTOS minutos\n" + this.getDia()
-				+ " de " + nomeDoMes[this.getMes()] + " de " + this.getAno() + ", as " + this.getHoras() + " horas e " + this.getMinutos() + "minutos.\n";
+				+ " de " + nomeDoMes[this.getMes()] + " de " + this.getAno() + ", as " + this.getHoras() + " horas e "
+				+ this.getMinutos() + "minutos.\n";
+	}
+
+	/**
+	 * Representa somente a data como uma string.
+	 * 
+	 * @return Uma string que representa somente a data como string.
+	 */
+	public String toStringSomenteData() {
+		return this.getDia() + "/" + nomeDoMes[this.getMes()] + "/" + this.getAno() + "\n";
 	}
 
 }
