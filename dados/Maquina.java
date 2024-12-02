@@ -8,16 +8,16 @@ public class Maquina {
 	private String nome;
 	private int codigoIdentificacao;
 	private EstadoDaMaquina status;
-	private SituacaoMaquina situacao;
+	private ContratoMaquinas contrato;
 	private List<RegistroDeUso> historicoUso = new ArrayList<RegistroDeUso>();
 	private List<RegistroManutencao> historicoManutencao = new ArrayList<RegistroManutencao>();
 	private Gerente responsavel;
 
-	public Maquina(String nome, int codigo, SituacaoMaquina situacao, Gerente responsavel, EstadoDaMaquina estado) {
+	public Maquina(String nome, int codigo, ContratoMaquinas contrato, Gerente responsavel, EstadoDaMaquina estado) {
 		this.nome = nome;
 		this.codigoIdentificacao = codigo;
 		this.status = estado;
-		this.situacao = situacao;
+		this.contrato = contrato;
 		this.responsavel = responsavel;
 	}
 
@@ -37,8 +37,8 @@ public class Maquina {
 		return responsavel;
 	}
 
-	public SituacaoMaquina getSituacao() {
-		return situacao;
+	public ContratoMaquinas getSituacao() {
+		return contrato;
 	}
 
 	public EstadoDaMaquina getStatus() {
@@ -49,20 +49,49 @@ public class Maquina {
 		return nome;
 	}
 
-	public void adicionaRegistroUso(RegistroDeUso r) {
-		historicoUso.add(r);
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void adicionaRegistroManutencao(RegistroManutencao r) {
-		historicoManutencao.add(r);
+	public void setResponsavel(Gerente responsavel) {
+		this.responsavel = responsavel;
 	}
 
-	public void removeRegistroUso(RegistroDeUso r) {
-		historicoUso.remove(r);
+	public void novoContrato(ContratoMaquinas contrato) {
+		this.contrato = contrato;
 	}
 
-	public void removeRegistroManutencao(RegistroManutencao r) {
-		historicoManutencao.remove(r);
+	public void setStatus(EstadoDaMaquina status) {
+		this.status = status;
+	}
+
+	public int adicionaRegistroUso(RegistroDeUso r) {
+		if (historicoUso.add(r)) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public int adicionaRegistroManutencao(RegistroManutencao r) {
+		if (historicoManutencao.add(r)) {
+			return 1;
+		}
+		return 0;
+
+	}
+
+	public int removeRegistroUso(RegistroDeUso r) {
+		if (historicoUso.remove(r)) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public int removeRegistroManutencao(RegistroManutencao r) {
+		if (historicoManutencao.remove(r)) {
+			return 1;
+		}
+		return 0;
 	}
 
 	@Override

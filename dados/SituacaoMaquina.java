@@ -2,8 +2,6 @@ package dados;
 
 public class SituacaoMaquina {
 
-	// aqui eu tinha pensado em situação de máquina operante e inoperante.
-
 	private int situacaoMaquina;
 	public static final int FINANCIADA = 1;
 	public static final int ALUGADA = 2;

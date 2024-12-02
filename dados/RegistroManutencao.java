@@ -13,6 +13,10 @@ public class RegistroManutencao extends Registro {
 		return dataFim;
 	}
 
+	public void setDataFim(Data dataFim) {
+		this.dataFim = dataFim;
+	}
+
 	@Override
 	public String toString() {
 		return "Registro de manutencao na maquina: " + this.getMaquina().getNome() + "\nRealizada por: "

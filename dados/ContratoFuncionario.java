@@ -20,6 +20,10 @@ public class ContratoFuncionario extends Contrato {
 		return salario;
 	}
 
+	public void setSalario(float salario) {
+		this.salario = salario;
+	}
+
 	@Override
 	public String toString() {
 		return "Contrato de funcionario:\nFuncionario contratado: " + this.getContratado().getNome() + "\nSalario: "

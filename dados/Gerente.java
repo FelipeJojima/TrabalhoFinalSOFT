@@ -7,20 +7,27 @@ public class Gerente extends Usuario {
 
 	private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 
-	public Gerente(String nome, String cpf, String email, float salario, Data dataDeNascimento, int codigo) {
-		super(nome, cpf, email, salario, dataDeNascimento, codigo);
+	public Gerente(String nome, String cpf, String email, float salario, Data dataDeNascimento, int codigo,
+			String senha) {
+		super(nome, cpf, email, salario, dataDeNascimento, codigo, senha);
 	}
 
-	public void adicionaFuncionario(Funcionario f) {
-		funcionarios.add(f);
+	public int adicionaFuncionario(Funcionario f) {
+		if (funcionarios.add(f)) {
+			return 1;
+		}
+		return 0;
 	}
 
 	public List<Funcionario> getFuncionarios() {
 		return funcionarios;
 	}
 
-	public void removeFuncionario(Funcionario f) {
-		this.funcionarios.remove(f);
+	public int removeFuncionario(Funcionario f) {
+		if (this.funcionarios.remove(f)) {
+			return 1;
+		}
+		return 0;
 	}
 
 	@Override

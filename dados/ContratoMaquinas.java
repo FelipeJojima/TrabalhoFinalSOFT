@@ -26,6 +26,14 @@ public class ContratoMaquinas extends Contrato {
 		return valorMensal;
 	}
 
+	public void setValorMensal(float valorMensal) {
+		this.valorMensal = valorMensal;
+	}
+
+	public void setSituacao(SituacaoMaquina situacao) {
+		this.situacao = situacao;
+	}
+
 	@Override
 	public String toString() {
 		return "Contrato de maquina:\nMaquina: " + this.getMaquina().getNome() + "\n" + this.getSituacao().toString()

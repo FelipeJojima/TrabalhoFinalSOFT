@@ -42,4 +42,24 @@ public class Contrato {
 	public int getMesesContrato() {
 		return mesesContrato;
 	}
+
+	public int setDataFim(Data dataFim) {
+		if (this.dataFim.comparaData(dataFim) == -1) {
+			this.dataFim = dataFim;
+			this.mesesContrato = this.dataInicio.mesesDiferenca(this.dataFim);
+			return 1;
+		} else {
+			if (this.dataInicio.comparaData(dataFim) == -1) {
+				this.dataFim = dataFim;
+				this.mesesContrato = this.dataInicio.mesesDiferenca(this.dataFim);
+				return 1;
+			}
+			return 0;
+		}
+
+	}
+
+	public void setResponsavel(Gerente responsavel) {
+		this.responsavel = responsavel;
+	}
 }
