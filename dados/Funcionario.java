@@ -5,15 +5,14 @@ import java.util.List;
 
 public class Funcionario extends Usuario {
 
-	private ContratoFuncionario contrato;
+	private ContratoFuncionario contrato = null;
 	private List<RegistroDeUso> historicoUso = new ArrayList<RegistroDeUso>();
 	private List<RegistroManutencao> historicoManutencao = new ArrayList<RegistroManutencao>();
 	private Gerente responsavel;
 
 	public Funcionario(String nome, String cpf, String email, float salario, Data dataDeNascimento, int codigo,
-			ContratoFuncionario contrato, Gerente responsavel, String senha) {
+			Gerente responsavel, String senha) {
 		super(nome, cpf, email, salario, dataDeNascimento, codigo, senha);
-		this.contrato = contrato;
 		this.responsavel = responsavel;
 	}
 

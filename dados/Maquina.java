@@ -8,16 +8,15 @@ public class Maquina {
 	private String nome;
 	private int codigoIdentificacao;
 	private EstadoDaMaquina status;
-	private ContratoMaquinas contrato;
+	private ContratoMaquinas contrato = null;
 	private List<RegistroDeUso> historicoUso = new ArrayList<RegistroDeUso>();
 	private List<RegistroManutencao> historicoManutencao = new ArrayList<RegistroManutencao>();
 	private Gerente responsavel;
 
-	public Maquina(String nome, int codigo, ContratoMaquinas contrato, Gerente responsavel, EstadoDaMaquina estado) {
+	public Maquina(String nome, int codigo, Gerente responsavel, EstadoDaMaquina estado) {
 		this.nome = nome;
 		this.codigoIdentificacao = codigo;
 		this.status = estado;
-		this.contrato = contrato;
 		this.responsavel = responsavel;
 	}
 
