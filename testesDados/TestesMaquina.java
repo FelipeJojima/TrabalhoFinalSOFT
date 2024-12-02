@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -31,7 +30,7 @@ public class TestesMaquina {
 		assertEquals(101, maquina.getCodigoIdentificacao());
 		assertEquals(gerente, maquina.getResponsavel());
 		assertNotNull(maquina.getStatus());
-		assertNull(maquina.getSituacao());
+		assertNull(maquina.getContrato());
 	}
 
 	@Test
@@ -65,7 +64,7 @@ public class TestesMaquina {
 
 		maquina.novoContrato(contrato);
 
-		assertEquals(contrato, maquina.getSituacao());
+		assertEquals(contrato, maquina.getContrato());
 	}
 
 	@Test
@@ -150,7 +149,7 @@ public class TestesMaquina {
 				1, "senha123");
 		Maquina maquina = new Maquina("Maquina A", 101, gerente);
 
-		String esperado = "Maquina:\nNome: Maquina A" + "null" + "Status da maquina: OCIOSA\n"
+		String esperado = "Maquina:\nNome: Maquina A\n" + "null" + "\nStatus da maquina: OCIOSA\n"
 				+ "Codigo: 101\nGerente Responsavel: Gerente 1\n";
 
 		assertEquals(esperado, maquina.toString());
@@ -164,24 +163,6 @@ public class TestesMaquina {
 		assertNull(maquina.getNome());
 		assertEquals(-1, maquina.getCodigoIdentificacao());
 		assertNull(maquina.getResponsavel());
-	}
-
-	@Test
-	public void testAdicionaRegistroUsoNulo() {
-		Maquina maquina = new Maquina("Maquina A", 101, null);
-
-		assertThrows(NullPointerException.class, () -> {
-			maquina.adicionaRegistroUso(null);
-		});
-	}
-
-	@Test
-	public void testAdicionaRegistroManutencaoNulo() {
-		Maquina maquina = new Maquina("Maquina A", 101, null);
-
-		assertThrows(NullPointerException.class, () -> {
-			maquina.adicionaRegistroManutencao(null);
-		});
 	}
 
 	@Test

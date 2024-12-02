@@ -70,8 +70,8 @@ public class ContratoFuncionario extends Contrato {
 																													// funcionário.
 				"Salario: " + this.getSalario() + "\n" + // Salário do funcionário.
 				"Meses de contrato: " + this.getMesesContrato() + "\n" + // Duração do contrato.
-				"Data de inicio: " + this.getDataInicio().toStringFormato1() + // Data de início.
-				"Data de fim: " + this.getDataFim().toStringFormato1() + // Data de fim.
+				"Data de inicio: " + this.getDataInicio().toStringSomenteData() + // Data de início.
+				"Data de fim: " + this.getDataFim().toStringSomenteData() + // Data de fim.
 				"Gerente responsavel: " + this.getResponsavel().getNome() + "\n" + // Nome do gerente responsável.
 				"Numero do contrato: " + this.getNumeroDeContrato() + "\n"; // Número do contrato.
 	}

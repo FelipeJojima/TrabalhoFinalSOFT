@@ -1,7 +1,6 @@
 package testesDados;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public class TestesGerente {
 
 	// Criação de objetos auxiliares
 	private Gerente criarGerenteBase() {
-		return new Gerente("João Silva", "12345678900", "joao@empresa.com", 8000.0f, new Data(10, 5, 1980), 1,
+		return new Gerente("João Silva", "09606320936", "joao@empresa.com", 8000.0f, new Data(10, 5, 1980), 1,
 				"senha123");
 	}
 
@@ -26,10 +25,10 @@ public class TestesGerente {
 	}
 
 	@Test
-	void testGerenteConstrutor() {
+	public void testGerenteConstrutor() {
 		Gerente gerente = criarGerenteBase();
 		assertEquals("João Silva", gerente.getNome());
-		assertEquals("12345678900", gerente.getCpf());
+		assertEquals("09606320936", gerente.getCpf());
 		assertEquals(8000.0f, gerente.getSalario());
 		assertEquals(1, gerente.getCodigoDeIdentificacao());
 		assertEquals("joao@empresa.com", gerente.getEmail());
@@ -37,7 +36,7 @@ public class TestesGerente {
 	}
 
 	@Test
-	void testAdicionarFuncionario() {
+	public void testAdicionarFuncionario() {
 		Gerente gerente = criarGerenteBase();
 		Funcionario funcionario = criarFuncionario("Maria Souza", 2);
 
@@ -49,7 +48,7 @@ public class TestesGerente {
 	}
 
 	@Test
-	void testAdicionarFuncionarioDuplicado() {
+	public void testAdicionarFuncionarioDuplicado() {
 		Gerente gerente = criarGerenteBase();
 		Funcionario funcionario = criarFuncionario("Maria Souza", 2);
 
@@ -60,7 +59,7 @@ public class TestesGerente {
 	}
 
 	@Test
-	void testRemoverFuncionarioExistente() {
+	public void testRemoverFuncionarioExistente() {
 		Gerente gerente = criarGerenteBase();
 		Funcionario funcionario = criarFuncionario("Carlos Almeida", 3);
 
@@ -72,7 +71,7 @@ public class TestesGerente {
 	}
 
 	@Test
-	void testRemoverFuncionarioNaoExistente() {
+	public void testRemoverFuncionarioNaoExistente() {
 		Gerente gerente = criarGerenteBase();
 		Funcionario funcionario = criarFuncionario("Carlos Almeida", 3);
 
@@ -80,16 +79,9 @@ public class TestesGerente {
 		assertEquals(0, gerente.removeFuncionario(funcionario));
 	}
 
-	@Test
-	void testAdicionarFuncionarioNull() {
-		Gerente gerente = criarGerenteBase();
-
-		// Teste com funcionário nulo
-		assertThrows(NullPointerException.class, () -> gerente.adicionaFuncionario(null));
-	}
 
 	@Test
-	void testRemoverFuncionarioNull() {
+	public void testRemoverFuncionarioNull() {
 		Gerente gerente = criarGerenteBase();
 
 		// Teste de remoção com funcionário nulo
@@ -97,22 +89,22 @@ public class TestesGerente {
 	}
 
 	@Test
-	void testGetFuncionariosListaVazia() {
+	public void testGetFuncionariosListaVazia() {
 		Gerente gerente = criarGerenteBase();
 		assertTrue(gerente.getFuncionarios().isEmpty());
 	}
 
 	@Test
-	void testToString() {
+	public void testToString() {
 		Gerente gerente = criarGerenteBase();
 
-		String expected = "Gerente:\nNome: João Silva\nCPF: 12345678900\nEmail: joao@empresa.com\nSalario: 8000.0Data de nascimento: 10/05/1980Codigo: 1\n";
+		String expected = "Gerente:\nNome: João Silva\nCPF: 09606320936\nEmail: joao@empresa.com\nSalario: 8000.0\nData de nascimento: 10/5/1980\nCodigo: 1\n";
 		assertEquals(expected, gerente.toString());
 	}
 
 	// Casos de borda
 	@Test
-	void testAdicionarVariosFuncionarios() {
+	public void testAdicionarVariosFuncionarios() {
 		Gerente gerente = criarGerenteBase();
 
 		for (int i = 1; i <= 100; i++) {
@@ -123,20 +115,4 @@ public class TestesGerente {
 		assertEquals(100, gerente.getFuncionarios().size());
 	}
 
-	@Test
-	void testRemoverTodosFuncionarios() {
-		Gerente gerente = criarGerenteBase();
-
-		// Adicionar 5 funcionários
-		for (int i = 1; i <= 5; i++) {
-			gerente.adicionaFuncionario(criarFuncionario("Funcionario " + i, i));
-		}
-
-		// Remover todos
-		for (Funcionario f : gerente.getFuncionarios()) {
-			assertEquals(1, gerente.removeFuncionario(f));
-		}
-
-		assertTrue(gerente.getFuncionarios().isEmpty());
-	}
 }

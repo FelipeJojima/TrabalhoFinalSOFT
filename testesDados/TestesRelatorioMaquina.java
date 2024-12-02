@@ -27,7 +27,7 @@ public class TestesRelatorioMaquina {
     private Data dataFim;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         // Configuração comum para os testes
         gerente = new Gerente("Gerente 1", "12345678901", "gerente@example.com", 5000, new Data(1, 1, 1980), 1, "senha123");
         funcionario = new Funcionario("Funcionario 1", "23456789012", "funcionario@example.com", 2000, new Data(1, 1, 1990), 2, gerente, "senha456");
@@ -44,7 +44,7 @@ public class TestesRelatorioMaquina {
     }
 
     @Test
-    void testRelatorioMaquinaComRegistros() {
+    public void testRelatorioMaquinaComRegistros() {
         RelatorioMaquina relatorio = new RelatorioMaquina(maquina);
         
         // Verificar se o relatorio contém registros e se a ordenação foi realizada corretamente
@@ -60,7 +60,7 @@ public class TestesRelatorioMaquina {
     }
 
     @Test
-    void testOrdenacaoDeRegistros() {
+    public void testOrdenacaoDeRegistros() {
         // Adicionando mais registros para garantir que a ordenação funcione corretamente
         Data dataAntiga = new Data(31, 12, 2023);
         RegistroDeUso registroAntigo = new RegistroDeUso(dataAntiga, gerente, funcionario, maquina, dataFim, 300);
@@ -76,7 +76,7 @@ public class TestesRelatorioMaquina {
     }
 
     @Test
-    void testRelatorioSemRegistros() {
+    public void testRelatorioSemRegistros() {
         Maquina maquinaSemRegistros = new Maquina("Máquina sem Registros", 102, gerente);
         RelatorioMaquina relatorio = new RelatorioMaquina(maquinaSemRegistros);
 
@@ -87,7 +87,7 @@ public class TestesRelatorioMaquina {
     }
 
     @Test
-    void testRelatorioComRegistrosDeTiposDiferentes() {
+    public void testRelatorioComRegistrosDeTiposDiferentes() {
         // Criar registros com diferentes tipos e testar o relatorio
         RegistroDeUso registroUso = new RegistroDeUso(dataInicio, gerente, funcionario, maquina, dataFim, 500);
         RegistroManutencao registroManutencao = new RegistroManutencao(dataInicio, gerente, funcionario, maquina, dataFim);
@@ -107,7 +107,7 @@ public class TestesRelatorioMaquina {
 
     // Teste de borda: Adicionar um único registro e verificar o comportamento do relatório
     @Test
-    void testRelatorioComUmUnicoRegistro() {
+    public void testRelatorioComUmUnicoRegistro() {
         RegistroDeUso unicoRegistro = new RegistroDeUso(dataInicio, gerente, funcionario, maquina, dataFim, 300);
         maquina.adicionaRegistroUso(unicoRegistro);
         
@@ -120,7 +120,7 @@ public class TestesRelatorioMaquina {
 
     // Teste de borda: Adicionar registros com a mesma data e verificar a ordenação
     @Test
-    void testRelatorioComRegistrosNaMesmaData() {
+    public void testRelatorioComRegistrosNaMesmaData() {
         Data mesmaData = new Data(1, 1, 2024);
         RegistroDeUso registro1 = new RegistroDeUso(mesmaData, gerente, funcionario, maquina, dataFim, 100);
         RegistroManutencao registro2 = new RegistroManutencao(mesmaData, gerente, funcionario, maquina, dataFim);

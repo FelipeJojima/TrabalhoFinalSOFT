@@ -87,8 +87,8 @@ public class ContratoMaquinas extends Contrato {
 	public String toString() {
 		// Retorna uma string com as informações do contrato formatadas
 		return "Contrato de maquina:\nMaquina: " + this.getMaquina().getNome() + "\n" + this.getSituacao().toString()
-				+ "Valor: " + this.getValorMensal() + "\nData de inicio: " + this.getDataInicio().toStringFormato1()
-				+ "Data de fim: " + this.getDataFim().toStringFormato1() + "Meses de contrato: "
+				+ "Valor: " + this.getValorMensal() + "\nData de inicio: " + this.getDataInicio().toStringSomenteData()
+				+ "Data de fim: " + this.getDataFim().toStringSomenteData() + "Meses de contrato: "
 				+ this.getMesesContrato() + "\nGerente responsavel: " + this.getResponsavel().getNome()
 				+ "\nNumero do contrato: " + this.getNumeroDeContrato() + "\n";
 	}

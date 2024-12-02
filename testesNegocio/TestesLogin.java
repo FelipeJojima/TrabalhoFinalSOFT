@@ -22,7 +22,7 @@ public class TestesLogin {
 	private CadastroUsuario cadastroGerente;
 
 	@BeforeEach
-	void setUp() {
+	public void setUp() {
 		// Setup básico para os testes
 		gerente = new Gerente("Gerente Teste", "123.456.789-00", "gerente@test.com", 5000, new Data(10, 10, 1980), 1,
 				"senha123");
@@ -35,7 +35,7 @@ public class TestesLogin {
 
 	// Teste de login com credenciais corretas
 	@Test
-	void testLoginValido() {
+	public void testLoginValido() {
 		login = new Login("gerente@test.com", "senha123");
 		assertEquals(1, login.getLog()); // Login válido, o status de login deve ser 1
 		assertNotNull(login.getUsuarioLogado()); // O usuário logado deve ser não-nulo
@@ -45,7 +45,7 @@ public class TestesLogin {
 
 	// Teste de login com credenciais incorretas
 	@Test
-	void testLoginInvalido() {
+	public void testLoginInvalido() {
 		login = new Login("gerente@test.com", "senhaErrada");
 		assertEquals(0, login.getLog()); // Login inválido, o status de login deve ser 0
 		assertNull(login.getUsuarioLogado()); // O usuário logado deve ser nulo
@@ -53,7 +53,7 @@ public class TestesLogin {
 
 	// Teste de novo cadastro de usuário
 	@Test
-	void testCadastroUsuario() {
+	public void testCadastroUsuario() {
 		login = new Login(cadastroGerente);
 		assertEquals(1, login.getLog()); // O cadastro deve ser bem-sucedido, status de login deve ser 1
 		assertEquals("gerente@test.com", login.getUsuarioLogado().getEmail()); // O email do gerente deve ser correto
@@ -61,7 +61,7 @@ public class TestesLogin {
 
 	// Teste de cadastro de usuário já existente (mesmo nome)
 	@Test
-	void testCadastroUsuarioExistente() {
+	public void testCadastroUsuarioExistente() {
 		login = new Login(cadastroGerente); // Primeira vez que o gerente se cadastra
 		assertEquals(1, login.getLog()); // O gerente foi cadastrado com sucesso
 
@@ -72,7 +72,7 @@ public class TestesLogin {
 
 	// Teste de cadastro de funcionário
 	@Test
-	void testCadastroFuncionario() {
+	public void testCadastroFuncionario() {
 		login = new Login(cadastroFuncionario);
 		assertEquals(1, login.getLog()); // O funcionário foi cadastrado com sucesso
 		assertEquals("funcionario@test.com", login.getUsuarioLogado().getEmail()); // O email do funcionário deve ser o
@@ -81,7 +81,7 @@ public class TestesLogin {
 
 	// Teste de exclusão de cadastro
 	@Test
-	void testExclusaoCadastro() {
+	public void testExclusaoCadastro() {
 		login = new Login(cadastroGerente);
 		assertEquals(1, login.getLog()); // O gerente foi cadastrado com sucesso
 
@@ -93,7 +93,7 @@ public class TestesLogin {
 
 	// Teste de tentativa de login com dados de cadastro excluído
 	@Test
-	void testLoginComCadastroExcluido() {
+	public void testLoginComCadastroExcluido() {
 		login = new Login(cadastroGerente);
 		assertEquals(1, login.getLog()); // O gerente foi cadastrado com sucesso
 
@@ -105,7 +105,7 @@ public class TestesLogin {
 
 	// Teste de login com email não cadastrado
 	@Test
-	void testLoginComEmailNaoCadastrado() {
+	public void testLoginComEmailNaoCadastrado() {
 		login = new Login("naoexistente@test.com", "senha123");
 		assertEquals(0, login.getLog()); // Login deve falhar, pois o email não está cadastrado
 		assertNull(login.getUsuarioLogado()); // Não deve haver usuário logado
@@ -113,7 +113,7 @@ public class TestesLogin {
 
 	// Teste de login com senha não cadastrada
 	@Test
-	void testLoginComSenhaNaoCadastrada() {
+	public void testLoginComSenhaNaoCadastrada() {
 		login = new Login("gerente@test.com", "senhaErrada");
 		assertEquals(0, login.getLog()); // Login deve falhar, pois a senha está incorreta
 		assertNull(login.getUsuarioLogado()); // Não deve haver usuário logado
@@ -121,7 +121,7 @@ public class TestesLogin {
 
 	// Teste de exclusão de cadastro com usuário não cadastrado
 	@Test
-	void testExclusaoCadastroNaoExistente() {
+	public void testExclusaoCadastroNaoExistente() {
 		login = new Login(cadastroGerente); // Cadastra o gerente
 		assertEquals(1, login.getLog());
 

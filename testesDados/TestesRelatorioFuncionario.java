@@ -19,7 +19,7 @@ import dados.Registro;
 public class TestesRelatorioFuncionario {
 
 	@Test
-	void testRelatorioFuncionarioGeracao() {
+	public void testRelatorioFuncionarioGeracao() {
 		// Criação de objetos auxiliares
 		Data dataInicio = new Data(1, 12, 2024, 10, 0);
 		Data dataFim = new Data(1, 12, 2024, 14, 0);
@@ -47,7 +47,7 @@ public class TestesRelatorioFuncionario {
 	}
 
 	@Test
-	void testRelatorioOrdenacao() {
+	public void testRelatorioOrdenacao() {
 		// Criação de objetos auxiliares
 		Data dataInicio1 = new Data(1, 12, 2024, 10, 0);
 		Data dataFim1 = new Data(1, 12, 2024, 14, 0);
@@ -77,7 +77,7 @@ public class TestesRelatorioFuncionario {
 	}
 
 	@Test
-	void testRelatorioSemRegistros() {
+	public void testRelatorioSemRegistros() {
 		// Criação de objetos auxiliares
 		Gerente gerente = new Gerente("Carlos Silva", "12345678901", "carlos@email.com", 5000.0f,
 				new Data(20, 5, 1980, 0, 0), 1, "senha123");
@@ -93,7 +93,7 @@ public class TestesRelatorioFuncionario {
 	}
 
 	@Test
-	void testToString() {
+	public void testToString() {
 		// Criação de objetos auxiliares
 		Data dataInicio = new Data(1, 12, 2024, 10, 0);
 		Data dataFim = new Data(1, 12, 2024, 14, 0);

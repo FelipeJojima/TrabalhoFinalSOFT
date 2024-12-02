@@ -29,23 +29,28 @@ public class Contrato {
 		// Inicializa a data de início.
 		this.dataInicio = inicio;
 
-		// Verifica se a data de início é posterior à data de fim.
-		if (inicio.comparaData(fim) == 1) {
-			// Caso a data de início seja posterior, ajusta a data de fim para ser igual à
-			// de início e define a duração como 0.
+		if (fim == null) {
 			this.dataFim = inicio;
 			this.mesesContrato = 0;
 		} else {
-			// Caso contrário, inicializa a data de fim e calcula a duração em meses.
-			this.dataFim = fim;
-			this.mesesContrato = inicio.mesesDiferenca(fim);
+			// Verifica se a data de início é posterior à data de fim.
+			if (inicio.comparaData(fim) == 1) {
+				// Caso a data de início seja posterior, ajusta a data de fim para ser igual à
+				// de início e define a duração como 0.
+				this.dataFim = inicio;
+				this.mesesContrato = 0;
+			} else {
+				// Caso contrário, inicializa a data de fim e calcula a duração em meses.
+				this.dataFim = fim;
+				this.mesesContrato = inicio.mesesDiferenca(fim);
+			}
+
+			// Inicializa o número do contrato.
+			this.numeroDeContrato = numero;
+
+			// Inicializa o gerente responsável.
+			this.responsavel = gerente;
 		}
-
-		// Inicializa o número do contrato.
-		this.numeroDeContrato = numero;
-
-		// Inicializa o gerente responsável.
-		this.responsavel = gerente;
 	}
 
 	/**

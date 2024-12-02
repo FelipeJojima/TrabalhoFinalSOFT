@@ -12,7 +12,7 @@ public class Maquina {
 	private int codigoIdentificacao;
 
 	// Estado atual da máquina (OCIOSA, ATIVA, INOPERANTE ou MANUTENCAO).
-	private EstadoDaMaquina status = new EstadoDaMaquina(1); // Define como OCIOSA por padrão.
+	private EstadoDaMaquina status = new EstadoDaMaquina(0); // Define como OCIOSA por padrão.
 
 	// Contrato associado à máquina, pode ser nulo caso ainda não exista contrato.
 	private ContratoMaquinas contrato = null;
@@ -82,7 +82,7 @@ public class Maquina {
 	 * 
 	 * @return O contrato da máquina, ou null se não houver contrato.
 	 */
-	public ContratoMaquinas getSituacao() {
+	public ContratoMaquinas getContrato() {
 		return contrato;
 	}
 
@@ -207,8 +207,14 @@ public class Maquina {
 	 */
 	@Override
 	public String toString() {
-		return "Maquina:\nNome: " + this.getNome() + this.getSituacao().toString() + this.getStatus().toString()
+		if (this.contrato == null) {
+				return "Maquina:\nNome: " + this.getNome() + "\nnull\n" + this.getStatus().toString()
 				+ "Codigo: " + this.getCodigoIdentificacao() + "\nGerente Responsavel: "
 				+ this.getResponsavel().getNome() + "\n";
+		}
+		return "Maquina:\nNome: " + this.getNome() + this.getContrato().getSituacao().toString() + this.getStatus().toString()
+				+ "Codigo: " + this.getCodigoIdentificacao() + "\nGerente Responsavel: "
+				+ this.getResponsavel().getNome() + "\n";
+	
 	}
 }

@@ -49,14 +49,14 @@ public class Usuario {
 		int j = 10, soma = 0, i;
 		// Soma para o primeiro dígito verificador
 		for (i = 0; i < cpf.length() - 2; i++) {
-			if (cpf.charAt(i) != '.' && cpf.charAt(i) == '-') {
-				soma += Integer.valueOf(cpf.charAt(i)) * j;
+			if (cpf.charAt(i) != '.' && cpf.charAt(i) != '-') {
+				soma += (Character.getNumericValue(cpf.charAt(i)) * j);
 				j--;
 			}
 		}
 		// Verifica se o primeiro dígito verificador está correto
 		int digitoCerto = 11 - (soma % 11);
-		int digitoColocado = Integer.valueOf(i);
+		int digitoColocado = Character.getNumericValue(cpf.charAt(i));
 		if (digitoCerto > 9) {
 			digitoCerto = 0;
 		}
@@ -68,14 +68,14 @@ public class Usuario {
 		j = 11;
 		soma = 0;
 		for (i = 0; i < cpf.length() - 2; i++) {
-			if (cpf.charAt(i) != '.' && cpf.charAt(i) == '-') {
-				soma += Integer.valueOf(cpf.charAt(i)) * j;
+			if (cpf.charAt(i) != '.' && cpf.charAt(i) != '-') {
+				soma += Character.getNumericValue(cpf.charAt(i)) * j;
 				j--;
 			}
 		}
 		soma += digitoCerto * j;
 		int segDigitoCerto = 11 - (soma % 11);
-		int segDigitoColocado = Integer.valueOf(cpf.charAt(i + 1));
+		int segDigitoColocado = Character.getNumericValue(cpf.charAt(i + 1));
 
 		if (segDigitoCerto != segDigitoColocado) {
 			return 0; // CPF inválido

@@ -23,7 +23,7 @@ public class TestesRegistroManutencao {
     private RegistroManutencao registroManutencao;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         // Configuração inicial para os testes
         dataInicio = new Data(1, 12, 2024, 9, 0); // Data de início: 1 de dezembro de 2024, 09:00
         dataFim = new Data(2, 12, 2024, 17, 0); // Data de término: 2 de dezembro de 2024, 17:00
@@ -38,7 +38,7 @@ public class TestesRegistroManutencao {
     }
 
     @Test
-    void testConstrutor() {
+    public void testConstrutor() {
         // Verifica se os valores passados ao construtor foram atribuídos corretamente
         assertEquals(dataInicio, registroManutencao.getData());
         assertEquals(dataFim, registroManutencao.getDataFim());
@@ -48,13 +48,13 @@ public class TestesRegistroManutencao {
     }
 
     @Test
-    void testGetDataFim() {
+    public void testGetDataFim() {
         // Verifica se a data de término é retornada corretamente
         assertEquals(dataFim, registroManutencao.getDataFim());
     }
 
     @Test
-    void testSetDataFim() {
+    public void testSetDataFim() {
         // Testa a modificação da data de término
         Data novaDataFim = new Data(3, 12, 2024, 12, 0); // Nova data de término
         registroManutencao.setDataFim(novaDataFim);
@@ -62,7 +62,7 @@ public class TestesRegistroManutencao {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         // Verifica o formato da string retornada pelo método toString
         String expected = "Registro de manutencao na maquina: Torno CNC\n" +
                 "Realizada por: João Santos\n" +
@@ -73,7 +73,7 @@ public class TestesRegistroManutencao {
     }
 
     @Test
-    void testDataFimAntesDataInicio() {
+    public void testDataFimAntesDataInicio() {
         // Testa um caso onde a data de término é anterior à data de início
         Data dataFimInvalida = new Data(30, 11, 2024, 18, 0); // Data de término anterior à data de início
         registroManutencao.setDataFim(dataFimInvalida);
@@ -81,7 +81,7 @@ public class TestesRegistroManutencao {
     }
 
     @Test
-    void testFuncionarioNulo() {
+    public void testFuncionarioNulo() {
         // Testa se a classe permite um funcionário nulo
         RegistroManutencao registroComFuncionarioNulo = 
                 new RegistroManutencao(dataInicio, gerente, null, maquina, dataFim);
@@ -89,7 +89,7 @@ public class TestesRegistroManutencao {
     }
 
     @Test
-    void testGerenteNulo() {
+    public void testGerenteNulo() {
         // Testa se a classe permite um gerente nulo
         RegistroManutencao registroComGerenteNulo = 
                 new RegistroManutencao(dataInicio, null, funcionario, maquina, dataFim);
@@ -97,7 +97,7 @@ public class TestesRegistroManutencao {
     }
 
     @Test
-    void testMaquinaNula() {
+    public void testMaquinaNula() {
         // Testa se a classe permite uma máquina nula
         RegistroManutencao registroComMaquinaNula = 
                 new RegistroManutencao(dataInicio, gerente, funcionario, null, dataFim);
@@ -105,7 +105,7 @@ public class TestesRegistroManutencao {
     }
 
     @Test
-    void testDatasIguais() {
+    public void testDatasIguais() {
         // Testa um caso onde as datas de início e término são iguais
         Data dataIgual = new Data(1, 12, 2024, 9, 0);
         RegistroManutencao registroComDatasIguais = 

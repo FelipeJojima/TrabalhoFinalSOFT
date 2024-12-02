@@ -19,7 +19,7 @@ public class TestesContratoFuncionario {
 	private Funcionario funcionario;
 
 	@BeforeEach
-	void setUp() {
+	public void setUp() {
 		// Configurando os objetos necessários para os testes
 
 		// Suponhamos que o Gerente e Funcionario são instâncias válidas
@@ -46,31 +46,31 @@ public class TestesContratoFuncionario {
 	}
 
 	@Test
-	void testContratoFuncionario() {
+	public void testContratoFuncionario() {
 		// Verificando se o contrato foi criado corretamente
 		assertNotNull(contrato);
 		assertEquals(4000f, contrato.getSalario());
-		assertEquals("Maria Oliveira", contrato.getContratado().getNome());
-		assertEquals("João Silva", contrato.getResponsavel().getNome());
+		assertEquals("Maria", contrato.getContratado().getNome());
+		assertEquals("João", contrato.getResponsavel().getNome());
 		assertEquals(5, contrato.getMesesContrato()); // De 01/01/2023 a 01/06/2023 são 5 meses
 	}
 
 	@Test
-	void testToString() {
+	public void testToString() {
 		// Teste se o método toString está formatando a string corretamente
-		String esperado = "Contrato de funcionario:\nFuncionario contratado: Maria Oliveira\nSalario: 4000.0\nMeses de contrato: 5\nData de inicio: 01/01/2023Data de fim: 01/06/2023Gerente responsavel: João Silva\nNumero do contrato: 101\n";
+		String esperado = "Contrato de funcionario:\nFuncionario contratado: Maria\nSalario: 4000.0\nMeses de contrato: 5\nData de inicio: 1/1/2023\nData de fim: 1/6/2023\nGerente responsavel: João\nNumero do contrato: 101\n";
 		assertEquals(esperado, contrato.toString());
 	}
 
 	@Test
-	void testAtualizacaoSalario() {
+	public void testAtualizacaoSalario() {
 		// Testando a atualização do salário
 		contrato.setSalario(4500f);
 		assertEquals(4500f, contrato.getSalario());
 	}
 
 	@Test
-	void testAlteracaoDataFim() {
+	public void testAlteracaoDataFim() {
 		// Testando a alteração da data de fim
 		Data novaDataFim = new Data(1, 12, 2023); // Alterando para 01/12/2023
 		int resultado = contrato.setDataFim(novaDataFim);
@@ -79,7 +79,7 @@ public class TestesContratoFuncionario {
 	}
 
 	@Test
-	void testNaoAlteracaoDataFimInvalida() {
+	public void testNaoAlteracaoDataFimInvalida() {
 		// Testando tentativa de alterar a data de fim para uma data anterior à data de
 		// início
 		Data dataInvalida = new Data(1, 12, 2022); // Tentando alterar para 01/12/2022 (antes da data de início)
@@ -88,7 +88,7 @@ public class TestesContratoFuncionario {
 	}
 
 	@Test
-	void testContratoComMesesNegativos() {
+	public void testContratoComMesesNegativos() {
 		// Definindo a data de início como posterior à data de fim
 		Data dataInicioInvalida = new Data(1, 6, 2023); // 01/06/2023
 		Data dataFimInvalida = new Data(1, 1, 2023); // 01/01/2023 (antes da data de início)
@@ -102,7 +102,7 @@ public class TestesContratoFuncionario {
 	}
 
 	@Test
-	void testContratoDeLongaDuracao() {
+	public void testContratoDeLongaDuracao() {
 		// Definindo a data de início e fim com anos distantes
 		Data dataInicioLonga = new Data(1, 1, 1900); // 01/01/1900
 		Data dataFimLonga = new Data(1, 1, 2100); // 01/01/2100
@@ -117,7 +117,7 @@ public class TestesContratoFuncionario {
 	}
 
 	@Test
-	void testAlteracaoDeDataFimIgualAoInicio() {
+	public void testAlteracaoDeDataFimIgualAoInicio() {
 		// Definindo a data de início e fim como a mesma
 		Data dataInicioFimIgual = new Data(1, 1, 2023); // 01/01/2023
 		Data dataFimIgual = new Data(1, 1, 2023); // 01/01/2023 (igual ao início)

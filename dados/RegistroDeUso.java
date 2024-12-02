@@ -84,7 +84,7 @@ public class RegistroDeUso extends Registro {
 	public String toString() {
 		return "Registro de uso da máquina: " + this.getMaquina().getNome() + "\nNo dia: "
 				+ this.getData().toStringFormato2() + " Até: " + this.getDataFim().toStringFormato2()
-				+ "\nOperada por: " + this.getFuncionario().getNome() + "\nResponsável: "
+				+ "Operada por: " + this.getFuncionario().getNome() + "\nResponsável: "
 				+ this.getResponsavel().getNome() + "\nProdução total: " + this.getProducao()
 				+ "\nProdução média por hora: " + this.getPorHora() + "\n";
 	}

@@ -70,7 +70,7 @@ public class Gerente extends Usuario {
 	@Override
 	public String toString() {
 		return "Gerente:\nNome: " + this.getNome() + "\nCPF: " + this.getCpf() + "\nEmail: " + this.getEmail()
-				+ "\nSalario: " + this.getSalario() + "Data de nascimento: "
+				+ "\nSalario: " + this.getSalario() + "\nData de nascimento: "
 				+ this.getDataDeNascimento().toStringSomenteData() + "Codigo: " + this.getCodigoDeIdentificacao()
 				+ "\n";
 	}

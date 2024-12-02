@@ -116,7 +116,7 @@ public class Data {
 	 */
 	public int verificaData(int dia, int mes, int ano, int horas, int minutos) {
 		// Verificacao de parametros validos
-		if (dia > 31 || dia < 1 || mes > 12 || mes < 1 || ano < 2000 || horas < 0 || horas > 24 || minutos < 0
+		if (dia > 31 || dia < 1 || mes > 12 || mes < 1 || ano < 1000 || horas < 0 || horas > 24 || minutos < 0
 				|| minutos > 59) {
 			return 0;
 		}
@@ -182,9 +182,9 @@ public class Data {
 			if (ano == dAno) {
 				return dMes - mes;
 			}
-			int anos = dAno - ano;
+			int anos = dAno - ano - 1;
 			int meses = 0;
-			if (dMes < mes) {
+			if (dMes <= mes) {
 				meses = (12 + dMes) - mes;
 			} else {
 				meses = dMes - mes;
@@ -438,8 +438,8 @@ public class Data {
 	 *         formato hh:mm
 	 */
 	public String toStringFormato1() {
-		return "Data e hora nos formatos: dd/mm/yyyy e hh:mm\n" + "Data: " + this.getDia() + "/" + this.getMes() + "/"
-				+ this.getAno() + ", Horario: " + this.getHoras() + ":" + this.getMinutos() + ".\n";
+		return "Data: " + this.getDia() + "/" + this.getMes() + "/" + this.getAno() + ", Horario: " + this.getHoras()
+				+ ":" + this.getMinutos() + ".\n";
 	}
 
 	/**
@@ -455,9 +455,8 @@ public class Data {
 	 *         HORAS horas e MINUTOS minutos.
 	 */
 	public String toStringFormato2() {
-		return "Data e hora nos formatos: DIA de MES de ANO, as HORAS horas e MINUTOS minutos\n" + this.getDia()
-				+ " de " + nomeDoMes[this.getMes()] + " de " + this.getAno() + ", as " + this.getHoras() + " horas e "
-				+ this.getMinutos() + "minutos.\n";
+		return this.getDia() + " de " + nomeDoMes[this.getMes()] + " de " + this.getAno() + ", as " + this.getHoras()
+				+ " horas e " + this.getMinutos() + " minutos.\n";
 	}
 
 	/**
@@ -466,7 +465,7 @@ public class Data {
 	 * @return Uma string que representa somente a data como string.
 	 */
 	public String toStringSomenteData() {
-		return this.getDia() + "/" + nomeDoMes[this.getMes()] + "/" + this.getAno() + "\n";
+		return this.getDia() + "/" + this.getMes() + "/" + this.getAno() + "\n";
 	}
 
 }

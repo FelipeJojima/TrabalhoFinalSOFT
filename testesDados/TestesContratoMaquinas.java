@@ -30,7 +30,7 @@ public class TestesContratoMaquinas {
 		gerente = new Gerente("João", "123456", "joaozinho123@gmail.com", 3451f, nascGerente, 63, "joao123"); // Exemplo
 																												// de
 																												// criação
-
+		situacao = new SituacaoMaquina(2);
 		maquina = new Maquina("Máquina 1", 5, gerente);
 		  // Exemplo de situação de máquina
 		contratoMaquinas = new ContratoMaquinas(dataInicio, dataFim, 1001, gerente, maquina, situacao, 2000.0f);
@@ -46,9 +46,9 @@ public class TestesContratoMaquinas {
 
 	@Test
 	public void testGetters() {
-		SituacaoMaquina certo = new SituacaoMaquina(2);
+		int certo = SituacaoMaquina.ALUGADA;
 		assertEquals("Máquina 1", contratoMaquinas.getMaquina().getNome(), "Nome da máquina está incorreto.");
-		assertEquals(certo, contratoMaquinas.getSituacao(), "Situação da máquina está incorreta.");
+		assertEquals(certo, contratoMaquinas.getSituacao().getSituacaoMaquina(), "Situação da máquina está incorreta.");
 		assertEquals(2000.0f, contratoMaquinas.getValorMensal(), "Valor mensal está incorreto.");
 	}
 
@@ -64,7 +64,7 @@ public class TestesContratoMaquinas {
 
 	@Test
 	public void testToString() {
-		String expectedString = "Contrato de maquina:\nMaquina: Máquina 1\nDisponívelValor: 2000.0\nData de inicio: 01/01/2023Data de fim: 31/12/2023Meses de contrato: 12\nGerente responsavel: Gerente A\nNumero do contrato: 1001\n";
+		String expectedString = "Contrato de maquina:\nMaquina: Máquina 1\nSituacao da maquina: ALUGADA\nValor: 2000.0\nData de inicio: 1/1/2023\nData de fim: 31/12/2023\nMeses de contrato: 11\nGerente responsavel: João\nNumero do contrato: 1001\n";
 		assertEquals(expectedString, contratoMaquinas.toString(),
 				"A string gerada pelo método toString está incorreta.");
 	}

@@ -23,7 +23,7 @@ public class TestesCadastroUsuario {
     private CadastroUsuario cadastroFuncionario;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         // Inicializando dados necessários para os testes
         Data dataNascimento = new Data(15, 6, 1985);
         gerente = new Gerente("João", "123.456.789-00", "joao@empresa.com", 5000, dataNascimento, 1, "senha123");
@@ -36,7 +36,7 @@ public class TestesCadastroUsuario {
 
     // Teste geral: Verifica se o cadastro de gerente foi criado corretamente
     @Test
-    void testCadastroGerente() {
+    public void testCadastroGerente() {
         Usuario usuario = cadastroGerente.getUsuario();
         assertTrue(usuario instanceof Gerente, "O usuário deve ser um gerente");
         assertEquals("João", usuario.getNome(), "O nome do gerente deve ser João");
@@ -45,7 +45,7 @@ public class TestesCadastroUsuario {
 
     // Teste geral: Verifica se o cadastro de funcionario foi criado corretamente
     @Test
-    void testCadastroFuncionario() {
+    public void testCadastroFuncionario() {
         Usuario usuario = cadastroFuncionario.getUsuario();
         assertTrue(usuario instanceof Funcionario, "O usuário deve ser um funcionario");
         assertEquals("Maria", usuario.getNome(), "O nome do funcionario deve ser Maria");
@@ -54,21 +54,21 @@ public class TestesCadastroUsuario {
 
     // Teste de borda: Altera o nome do gerente
     @Test
-    void testAlteraNomeGerente() {
+    public void testAlteraNomeGerente() {
         cadastroGerente.alteraNome("Carlos");
         assertEquals("Carlos", cadastroGerente.getUsuario().getNome(), "O nome do gerente deve ser alterado para Carlos");
     }
 
     // Teste de borda: Tenta alterar o CPF de um gerente para um CPF inválido
     @Test
-    void testAlteraCpfInvalido() {
+    public void testAlteraCpfInvalido() {
         int resultado = cadastroGerente.alteraCpf("000.000.000-00");
         assertEquals(0, resultado, "O CPF deve ser inválido");
     }
 
     // Teste de borda: Altera o CPF do gerente para um CPF válido
     @Test
-    void testAlteraCpfValido() {
+    public void testAlteraCpfValido() {
         int resultado = cadastroGerente.alteraCpf("111.222.333-44");
         assertEquals(1, resultado, "O CPF deve ser alterado com sucesso");
         assertEquals("111.222.333-44", cadastroGerente.getUsuario().getCpf(), "O CPF do gerente deve ser alterado para 111.222.333-44");
@@ -76,28 +76,28 @@ public class TestesCadastroUsuario {
 
     // Teste geral: Altera o e-mail do funcionario
     @Test
-    void testAlteraEmailFuncionario() {
+    public void testAlteraEmailFuncionario() {
         cadastroFuncionario.alteraEmail("maria.nova@empresa.com");
         assertEquals("maria.nova@empresa.com", cadastroFuncionario.getUsuario().getEmail(), "O e-mail do funcionario deve ser alterado");
     }
 
     // Teste de borda: Altera o salário do funcionario para 0
     @Test
-    void testAlteraSalarioZero() {
+    public void testAlteraSalarioZero() {
         cadastroFuncionario.alteraSalario(0);
         assertEquals(0, cadastroFuncionario.getUsuario().getSalario(), "O salário do funcionário deve ser alterado para 0");
     }
 
     // Teste geral: Altera o salário do gerente
     @Test
-    void testAlteraSalarioGerente() {
+    public void testAlteraSalarioGerente() {
         cadastroGerente.alteraSalario(7000);
         assertEquals(7000, cadastroGerente.getUsuario().getSalario(), "O salário do gerente deve ser alterado para 7000");
     }
 
     // Teste de borda: Tenta alterar contrato de um gerente (deve falhar, pois ele não é funcionário)
     @Test
-    void testAlteraContratoGerente() {
+    public void testAlteraContratoGerente() {
         ContratoFuncionario contrato = new ContratoFuncionario(null, null, 0, gerente, funcionario, 0);
         cadastroGerente.alteraContrato(contrato); // Não deve alterar, pois o usuário não é um funcionario
         assertNull(cadastroGerente.getUsuario(), "O gerente não deve ter contrato alterado");
@@ -105,7 +105,7 @@ public class TestesCadastroUsuario {
 
     // Teste geral: Altera o responsável do funcionário
     @Test
-    void testAlteraResponsavelFuncionario() {
+    public void testAlteraResponsavelFuncionario() {
         Gerente novoGerente = new Gerente("Carlos", "111.222.333-44", "carlos@empresa.com", 8000, new Data(15, 5, 1980), 3, "senha789");
         cadastroFuncionario.alteraResponsavel(novoGerente);
         assertEquals(novoGerente, ((Funcionario) cadastroFuncionario.getUsuario()).getResponsavel(), "O responsável do funcionário deve ser alterado para Carlos");
@@ -113,7 +113,7 @@ public class TestesCadastroUsuario {
 
     // Teste de borda: Tenta alterar o responsável do gerente (deve falhar, pois ele não tem responsável)
     @Test
-    void testAlteraResponsavelGerente() {
+    public void testAlteraResponsavelGerente() {
         Gerente novoGerente = new Gerente("Carlos", "111.222.333-44", "carlos@empresa.com", 8000, new Data(15, 5, 1980), 3, "senha789");
         cadastroGerente.alteraResponsavel(novoGerente); // Não deve fazer nada, pois o gerente não tem responsável
         assertNull(cadastroGerente.getUsuario(), "O gerente não deve ter responsável alterado");
@@ -121,7 +121,7 @@ public class TestesCadastroUsuario {
 
     // Teste geral: Altera a data de nascimento do funcionario
     @Test
-    void testAlteraDataNascimentoFuncionario() {
+    public void testAlteraDataNascimentoFuncionario() {
         Data novaData = new Data(1, 1, 1990);
         cadastroFuncionario.alteraDataNascimento(novaData);
         assertEquals(novaData, cadastroFuncionario.getUsuario().getDataDeNascimento(), "A data de nascimento do funcionario deve ser alterada");

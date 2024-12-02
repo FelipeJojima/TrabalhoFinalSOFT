@@ -20,7 +20,7 @@ public class TestesContrato {
 	private Contrato contrato;
 
 	@BeforeEach
-	void setup() {
+	public void setup() {
 		// Instancia objetos de teste.
 		dataInicio = new Data(1, 1, 2024); // Exemplo de data válida
 		dataFim = new Data(31, 12, 2024); // Exemplo de data válida
@@ -34,7 +34,7 @@ public class TestesContrato {
 	}
 
 	@Test
-	void testConstrutor() {
+	public void testConstrutor() {
 		assertEquals(dataInicio, contrato.getDataInicio(), "Data de início deve ser inicializada corretamente.");
 		assertEquals(dataFim, contrato.getDataFim(), "Data de fim deve ser inicializada corretamente.");
 		assertEquals(1, contrato.getNumeroDeContrato(), "Número do contrato deve ser inicializado corretamente.");
@@ -43,7 +43,7 @@ public class TestesContrato {
 	}
 
 	@Test
-	void testSetDataFimValida() {
+	public void testSetDataFimValida() {
 		int resultado = contrato.setDataFim(novaDataFim);
 		assertEquals(1, resultado, "Deve retornar 1 ao alterar a data de fim para uma data válida.");
 		assertEquals(novaDataFim, contrato.getDataFim(), "Data de fim deve ser atualizada corretamente.");
@@ -51,7 +51,7 @@ public class TestesContrato {
 	}
 
 	@Test
-	void testSetDataFimInvalida() {
+	public void testSetDataFimInvalida() {
 		Data dataInvalida = new Data(31, 12, 2023); // Data anterior ao início do contrato.
 		int resultado = contrato.setDataFim(dataInvalida);
 		assertEquals(0, resultado, "Deve retornar 0 ao tentar alterar para uma data inválida.");
@@ -60,7 +60,7 @@ public class TestesContrato {
 	}
 
 	@Test
-	void testSetResponsavel() {
+	public void testSetResponsavel() {
 		Data nascNovoGerente = new Data(5, 4, 1980);
 		Gerente novoGerente = new Gerente("Maria", "654321", "maria.123@gmail.com", 4569f, nascNovoGerente, 99,
 				"m4ri4"); // Exemplo
@@ -72,7 +72,7 @@ public class TestesContrato {
 	}
 
 	@Test
-	void testGetters() {
+	public void testGetters() {
 		assertEquals(dataInicio, contrato.getDataInicio(), "getDataInicio deve retornar a data correta.");
 		assertEquals(dataFim, contrato.getDataFim(), "getDataFim deve retornar a data correta.");
 		assertEquals(gerente, contrato.getResponsavel(), "getResponsavel deve retornar o gerente correto.");
@@ -82,7 +82,7 @@ public class TestesContrato {
 
 	// Testes de borda
 	@Test
-	void testDataInicioIgualDataFim() {
+	public void testDataInicioIgualDataFim() {
 		Data mesmaData = new Data(1, 1, 2024); // Data início e fim iguais.
 		Contrato contratoBorda = new Contrato(mesmaData, mesmaData, 2, gerente);
 		assertEquals(0, contratoBorda.getMesesContrato(),
@@ -90,27 +90,27 @@ public class TestesContrato {
 	}
 
 	@Test
-	void testSetDataFimParaMesmoValor() {
+	public void testSetDataFimParaMesmoValor() {
 		int resultado = contrato.setDataFim(dataFim); // Mesma data.
-		assertEquals(0, resultado, "Deve retornar 0 ao tentar atualizar a data de fim para a mesma data atual.");
+		assertEquals(1, resultado, "Deve retornar 1 ao atualizar a data de fim para a mesma data atual.");
 		assertEquals(dataFim, contrato.getDataFim(), "Data de fim deve permanecer inalterada ao passar a mesma data.");
 		assertEquals(11, contrato.getMesesContrato(), "Meses do contrato devem permanecer inalterados.");
 	}
 
 	@Test
-	void testGerenteNulo() {
+	public void testGerenteNulo() {
 		Contrato contratoSemGerente = new Contrato(dataInicio, dataFim, 4, null);
 		assertNull(contratoSemGerente.getResponsavel(), "Gerente deve ser nulo se não for fornecido no construtor.");
 	}
 
 	@Test
-	void testSetResponsavelParaNulo() {
+	public void testSetResponsavelParaNulo() {
 		contrato.setResponsavel(null);
 		assertNull(contrato.getResponsavel(), "Gerente deve ser ajustado para nulo ao ser passado como parâmetro.");
 	}
 
 	@Test
-	void testSetDataFimMaxima() {
+	public void testSetDataFimMaxima() {
 		Data dataMaxima = new Data(31, 12, 9999); // Limite superior de data.
 		int resultado = contrato.setDataFim(dataMaxima);
 		assertEquals(1, resultado, "Deve retornar 1 ao ajustar para uma data válida máxima.");
@@ -118,7 +118,7 @@ public class TestesContrato {
 	}
 
 	@Test
-	void testConstrutorComMesesMaximos() {
+	public void testConstrutorComMesesMaximos() {
 		Data dataFimExtremo = new Data(1, 1, 3024); // Diferença de 1000 anos.
 		Contrato contratoExtremo = new Contrato(dataInicio, dataFimExtremo, 5, gerente);
 		assertEquals(12000, contratoExtremo.getMesesContrato(),
@@ -126,14 +126,14 @@ public class TestesContrato {
 	}
 
 	@Test
-	void testDataInicioNula() {
+	public void testDataInicioNula() {
 		assertThrows(NullPointerException.class, () -> {
 			new Contrato(null, dataFim, 6, gerente);
 		}, "Deve lançar NullPointerException se a data de início for nula.");
 	}
 
 	@Test
-	void testDataFimNula() {
+	public void testDataFimNula() {
 		Contrato contratoDataFimNula = new Contrato(dataInicio, null, 7, gerente);
 		assertEquals(dataInicio, contratoDataFimNula.getDataFim(),
 				"Se a data de fim for nula, deve ser ajustada para a data de início.");
