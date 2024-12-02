@@ -17,7 +17,7 @@ public class CadastroUsuario {
 
 	public CadastroUsuario(Funcionario f) {
 		this.usuario = new Funcionario(f.getNome(), f.getCpf(), f.getEmail(), f.getSalario(), f.getDataDeNascimento(),
-				f.getCodigoDeIdentificacao(), f.getContrato(), f.getResponsavel(), f.getSenha());
+				f.getCodigoDeIdentificacao(), f.getResponsavel(), f.getSenha());
 	}
 
 	public Usuario getUsuario() {

@@ -62,7 +62,7 @@ public class EstadoDaMaquina {
 	/**
 	 * Sincronizando o valor de estado com a string respectiva.
 	 */
-	protected static final String[] nomeEstado = { "OCIOSA", "ATIVA", "INOPERANTE", "MANUTENCAO", "", };
+	public static final String[] nomeEstado = { "OCIOSA", "ATIVA", "INOPERANTE", "MANUTENCAO", "", };
 
 	@Override
 	/**

@@ -8,12 +8,16 @@ import dados.Funcionario;
 import dados.Maquina;
 import dados.RegistroDeUso;
 import dados.ContratoMaquinas;
+import dados.Data;
 
 public class Sistema {
 
 	private static Sistema instance = null;
 	private List<Maquina> maquinas = new ArrayList<Maquina>();
 	private Login login;
+	private List<Data> ultimaModificacao = new ArrayList<Data>(); // Lista com indices sincronizados com a lista de
+																	// maquinas sobre as ultimas data de mudanca de
+																	// estado na maquina do indice.
 
 	public Sistema() {
 
@@ -25,73 +29,73 @@ public class Sistema {
 		}
 		return instance;
 	}
-	
+
 	public void novoContratoFuncionario(Funcionario f, ContratoFuncionario contrato) {
-		
+
 	}
-	
+
 	public void novoContratoMaquina(Maquina m, ContratoMaquinas contrato) {
-		
+
 	}
-	
+
 	public void novaMaquina(Maquina m) {
-		
+
 	}
-	
+
 	public void alteraMaquina(Maquina nova, Maquina antiga) {
-		
+
 	}
-	
+
 	public void iniciaUso(Maquina m, CadastroUsuario u) {
-		
+
 	}
-	
+
 	public void finalizaUso(Maquina m, CadastroUsuario u) {
-		
+
 	}
-	
+
 	public void inativaMaquina(Maquina m, CadastroUsuario u) {
-		
+
 	}
-	
+
 	public void manutencaoMaquina(Maquina m, CadastroUsuario u) {
-		
+
 	}
-	
+
 	public void geraRelatorioMaquina(Maquina m) {
-		
+
 	}
-	
+
 	public void geraRelatorioFuncionario(Funcionario f) {
-		
+
 	}
-	
+
 	public void login(String usuario, String senha) {
-		
+
 	}
-	
+
 	public void novoUsuario(CadastroUsuario novo) {
-		
+
 	}
-	
+
 	public void exclueUsuario(CadastroUsuario remover, CadastroUsuario gerente) {
-		
+
 	}
-	
+
 	public void exclueMaquina(Maquina m, CadastroUsuario u) {
-		
+
 	}
-	
+
 	public void encerrarConta(CadastroUsuario excluir) {
-		
+
 	}
-	
+
 	public void informacoesPessoais(CadastroUsuario u) {
-		
+
 	}
 
 	public void informacoesMaquina(Maquina m) {
-		
+
 	}
-	
+
 }

@@ -1,11 +1,16 @@
 package testesDados;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import dados.ContratoMaquinas;
 import dados.Data;
 import dados.Gerente;
 import dados.Maquina;
 import dados.SituacaoMaquina;
-import dados.EstadoDaMaquina;
 
 public class TestesContratoMaquinas {
 
@@ -25,11 +30,9 @@ public class TestesContratoMaquinas {
 		gerente = new Gerente("João", "123456", "joaozinho123@gmail.com", 3451f, nascGerente, 63, "joao123"); // Exemplo
 																												// de
 																												// criação
-																												// do
-																												// gerente
-		EstadoDaMaquina estado = new EstadoDaMaquina(1);
-		maquina = new Maquina("Máquina 1", 5, gerente, estado);
-		situacao = new SituacaoMaquina(2); // Exemplo de situação de máquina
+
+		maquina = new Maquina("Máquina 1", 5, gerente);
+		  // Exemplo de situação de máquina
 		contratoMaquinas = new ContratoMaquinas(dataInicio, dataFim, 1001, gerente, maquina, situacao, 2000.0f);
 	}
 

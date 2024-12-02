@@ -177,7 +177,7 @@ public class Data {
 	 * @return A diferenca em meses.
 	 */
 	public int mesesDiferenca(Data data) {
-		int mes = this.getMes(), ano= this.getAno(), dMes = data.getMes(), dAno = data.getAno();
+		int mes = this.getMes(), ano = this.getAno(), dMes = data.getMes(), dAno = data.getAno();
 		if (this.comparaData(data) == -1) {
 			if (ano == dAno) {
 				return dMes - mes;
@@ -185,7 +185,7 @@ public class Data {
 			int anos = dAno - ano;
 			int meses = 0;
 			if (dMes < mes) {
-				meses = (12 + dMes) -mes;
+				meses = (12 + dMes) - mes;
 			} else {
 				meses = dMes - mes;
 			}
@@ -219,13 +219,12 @@ public class Data {
 		int difMes = 0;
 		difMes = this.mesesDiferenca(data);
 		int mes = this.getMes(), dia = this.getDia(), ano = this.getAno();
-		int dMes = data.getMes(), dDia = data.getDia(),dAno = data.getAno();
+		int dMes = data.getMes(), dDia = data.getDia(), dAno = data.getAno();
 		if (difMes != 0) {
 			if (compara == -1) {
 				for (int i = 1; i < difMes; i++) {
 					if (mes + i > 12) {
-						if (mes + i - 12 == 4 || mes + i - 12 == 6 || mes + i - 12 == 9
-								|| mes + i - 12 == 11) {
+						if (mes + i - 12 == 4 || mes + i - 12 == 6 || mes + i - 12 == 9 || mes + i - 12 == 11) {
 							somaDias += 30;
 						} else if (mes + i - 12 == 2) {
 							if ((ano + 1) % 4 == 0) {
@@ -237,8 +236,7 @@ public class Data {
 							somaDias += 31;
 						}
 					} else {
-						if (mes + i == 4 || mes + i == 6 || mes + i == 9
-								|| mes + i == 11) {
+						if (mes + i == 4 || mes + i == 6 || mes + i == 9 || mes + i == 11) {
 							somaDias += 30;
 						} else if (mes + i == 2) {
 							if (ano % 4 == 0) {
@@ -251,23 +249,22 @@ public class Data {
 						}
 					}
 				}
-				if (mes == 4 ||mes == 6 || mes == 9 || mes == 11) {
+				if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
 					somaDias += (30 - dia);
-				}else if (mes == 2) {
+				} else if (mes == 2) {
 					if (ano % 4 == 0) {
 						somaDias += (29 - dia);
-					}else {
+					} else {
 						somaDias += (28 - dia);
 					}
-				}else {
+				} else {
 					somaDias += (31 - dia);
 				}
 				somaDias += dDia;
-			}else {
+			} else {
 				for (int i = 1; i < difMes; i++) {
 					if (dMes + i > 12) {
-						if (dMes + i - 12 == 4 || dMes + i - 12 == 6 || dMes + i - 12 == 9
-								|| dMes + i - 12 == 11) {
+						if (dMes + i - 12 == 4 || dMes + i - 12 == 6 || dMes + i - 12 == 9 || dMes + i - 12 == 11) {
 							somaDias += 30;
 						} else if (dMes + i - 12 == 2) {
 							if ((dAno + 1) % 4 == 0) {
@@ -279,8 +276,7 @@ public class Data {
 							somaDias += 31;
 						}
 					} else {
-						if (dMes + i == 4 || dMes + i == 6 || dMes + i == 9
-								|| dMes + i == 11) {
+						if (dMes + i == 4 || dMes + i == 6 || dMes + i == 9 || dMes + i == 11) {
 							somaDias += 30;
 						} else if (dMes + i == 2) {
 							if (dAno % 4 == 0) {
@@ -293,24 +289,24 @@ public class Data {
 						}
 					}
 				}
-				if (dMes == 4 ||dMes == 6 || dMes == 9 || dMes == 11) {
+				if (dMes == 4 || dMes == 6 || dMes == 9 || dMes == 11) {
 					somaDias += (30 - dDia);
-				}else if (dMes == 2) {
+				} else if (dMes == 2) {
 					if (dAno % 4 == 0) {
 						somaDias += (29 - dDia);
-					}else {
+					} else {
 						somaDias += (28 - dDia);
 					}
-				}else {
+				} else {
 					somaDias += (31 - dDia);
 				}
 				somaDias += dia;
 			}
 			return somaDias;
-		}else {
+		} else {
 			if (compara == -1) {
 				return dDia - dia;
-			}else {
+			} else {
 				return dia - dDia;
 			}
 		}
@@ -332,17 +328,17 @@ public class Data {
 			return dHoras - horas;
 		}
 		int difDias = this.diferencaDias(data);
-		int somaHoras = (difDias - 1)*24;
+		int somaHoras = (difDias - 1) * 24;
 		if (compara == -1) {
 			somaHoras += (24 - horas);
 			somaHoras += dHoras;
-		}else {
+		} else {
 			somaHoras += (24 - dHoras);
 			somaHoras += horas;
 		}
 		return somaHoras;
 	}
-	
+
 	/**
 	 * Recupera o valor do mes.
 	 * 
