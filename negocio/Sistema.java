@@ -6,7 +6,6 @@ import java.util.List;
 import dados.ContratoFuncionario;
 import dados.Funcionario;
 import dados.Maquina;
-import dados.RegistroDeUso;
 import dados.ContratoMaquinas;
 import dados.Data;
 
