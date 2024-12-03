@@ -108,10 +108,11 @@ public class TestesRelatorioMaquina {
     // Teste de borda: Adicionar um único registro e verificar o comportamento do relatório
     @Test
     public void testRelatorioComUmUnicoRegistro() {
-        RegistroDeUso unicoRegistro = new RegistroDeUso(dataInicio, gerente, funcionario, maquina, dataFim, 300);
-        maquina.adicionaRegistroUso(unicoRegistro);
+    	Maquina m2 = new Maquina("M2", 0, gerente);
+        RegistroDeUso unicoRegistro = new RegistroDeUso(dataInicio, gerente, funcionario, m2, dataFim, 300);
+        m2.adicionaRegistroUso(unicoRegistro);
         
-        RelatorioMaquina relatorio = new RelatorioMaquina(maquina);
+        RelatorioMaquina relatorio = new RelatorioMaquina(m2);
         
         // Verificar se o relatório contém apenas um registro
         assertNotNull(relatorio);
@@ -122,15 +123,16 @@ public class TestesRelatorioMaquina {
     @Test
     public void testRelatorioComRegistrosNaMesmaData() {
         Data mesmaData = new Data(1, 1, 2024);
-        RegistroDeUso registro1 = new RegistroDeUso(mesmaData, gerente, funcionario, maquina, dataFim, 100);
-        RegistroManutencao registro2 = new RegistroManutencao(mesmaData, gerente, funcionario, maquina, dataFim);
+        Maquina m2 = new Maquina("M2", 0, gerente);
+        RegistroDeUso registro1 = new RegistroDeUso(mesmaData, gerente, funcionario, m2, dataFim, 100);
+        RegistroManutencao registro2 = new RegistroManutencao(mesmaData, gerente, funcionario, m2, dataFim);
         
         // Adicionando ambos os registros
-        maquina.adicionaRegistroUso(registro1);
-        maquina.adicionaRegistroManutencao(registro2);
+        m2.adicionaRegistroUso(registro1);
+        m2.adicionaRegistroManutencao(registro2);
         
         // Gerar o relatório
-        RelatorioMaquina relatorio = new RelatorioMaquina(maquina);
+        RelatorioMaquina relatorio = new RelatorioMaquina(m2);
         
         // Verificar se os dois registros estão presentes no relatório
         List<Registro> registros = relatorio.getRegistros();

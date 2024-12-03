@@ -7,6 +7,8 @@ public class Gerente extends Usuario {
 
 	// Lista que armazena os funcionários sob a responsabilidade do gerente.
 	private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+	// Lista que armazena as maquinas sob a responsabilidade do gerente.
+	private List<Maquina> maquinas = new ArrayList<Maquina>();
 
 	/**
 	 * Construtor para criar um objeto Gerente.
@@ -39,12 +41,35 @@ public class Gerente extends Usuario {
 	}
 
 	/**
+	 * Adiciona uma maquina à lista de maquinas gerenciados por este gerente.
+	 *
+	 * @param m A maquina a ser adicionada.
+	 * @return Retorna 1 se a maquina foi adicionado com sucesso, caso contrário,
+	 *         retorna 0.
+	 */
+	public int adicionaMaquina(Maquina m) {
+		if (maquinas.add(m)) {
+			return 1;
+		}
+		return 0;
+	}
+
+	/**
 	 * Obtém a lista de funcionários gerenciados por este gerente.
 	 *
 	 * @return Uma lista contendo os funcionários.
 	 */
 	public List<Funcionario> getFuncionarios() {
 		return funcionarios;
+	}
+
+	/**
+	 * Obtém a lista de maquinas gerenciados por este gerente.
+	 *
+	 * @return Uma lista contendo as maquinas.
+	 */
+	public List<Maquina> getMaquinas() {
+		return maquinas;
 	}
 
 	/**
@@ -59,6 +84,20 @@ public class Gerente extends Usuario {
 			return 1; // Indica sucesso na remoção.
 		}
 		return 0; // Indica falha na remoção.
+	}
+
+	/**
+	 * Remove uma maquina da lista de maquinas gerenciados por este gerente.
+	 *
+	 * @param m A maquina a ser removido.
+	 * @return Retorna 1 se a maquina foi removido com sucesso, caso contrário,
+	 *         retorna 0.
+	 */
+	public int removeMaquina(Maquina m) {
+		if (this.maquinas.remove(m)) {
+			return 1;
+		}
+		return 0;
 	}
 
 	/**

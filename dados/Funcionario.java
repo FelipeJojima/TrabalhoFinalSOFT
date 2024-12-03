@@ -150,10 +150,18 @@ public class Funcionario extends Usuario {
 	 */
 	@Override
 	public String toString() {
-		return "Funcionario:\nNome: " + this.getNome() + "\nCPF: " + this.getCpf() + "\nEmail: " + this.getEmail()
-				+ "\nSalario: " + this.getSalario() + "\nData de nascimento: "
-				+ this.getDataDeNascimento().toStringSomenteData() + "Codigo: " + this.getCodigoDeIdentificacao()
-				+ "\nGerente responsavel: " + this.getResponsavel().getNome() + "\nNumero do contrato: "
-				+ this.getContrato().getNumeroDeContrato() + "\n";
+		if (this.getContrato() != null) {
+			return "Funcionario:\nNome: " + this.getNome() + "\nCPF: " + this.getCpf() + "\nEmail: " + this.getEmail()
+					+ "\nSalario: " + this.getSalario() + "\nData de nascimento: "
+					+ this.getDataDeNascimento().toStringSomenteData() + "Codigo: " + this.getCodigoDeIdentificacao()
+					+ "\nGerente responsavel: " + this.getResponsavel().getNome() + "\nNumero do contrato: "
+					+ this.getContrato().getNumeroDeContrato() + "\n";
+		} else {
+			return "Funcionario:\nNome: " + this.getNome() + "\nCPF: " + this.getCpf() + "\nEmail: " + this.getEmail()
+					+ "\nSalario: " + this.getSalario() + "\nData de nascimento: "
+					+ this.getDataDeNascimento().toStringSomenteData() + "Codigo: " + this.getCodigoDeIdentificacao()
+					+ "\nGerente responsavel: " + this.getResponsavel().getNome() + "\n";
+		}
+
 	}
 }

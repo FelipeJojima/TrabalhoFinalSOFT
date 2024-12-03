@@ -26,7 +26,13 @@ public class RegistroDeUso extends Registro {
 		this.producao = producao;
 		// Calcula a produção média por hora com base na diferença entre data inicial e
 		// final.
-		this.porHora = producao / (data.diferencaHoras(dataFim));
+		int dif = data.diferencaHoras(dataFim);
+		if (dif != 0) {
+			this.porHora = producao / dif;
+		}else {
+			this.porHora = producao;
+		}
+		
 	}
 
 	/**
@@ -82,10 +88,19 @@ public class RegistroDeUso extends Registro {
 	 */
 	@Override
 	public String toString() {
-		return "Registro de uso da máquina: " + this.getMaquina().getNome() + "\nNo dia: "
+		if (this.getFuncionario() != null) {
+				return "Registro de uso da máquina: " + this.getMaquina().getNome() + "\nNo dia: "
 				+ this.getData().toStringFormato2() + " Até: " + this.getDataFim().toStringFormato2()
 				+ "Operada por: " + this.getFuncionario().getNome() + "\nResponsável: "
 				+ this.getResponsavel().getNome() + "\nProdução total: " + this.getProducao()
 				+ "\nProdução média por hora: " + this.getPorHora() + "\n";
+		}else {
+			return "Registro de uso da máquina: " + this.getMaquina().getNome() + "\nNo dia: "
+					+ this.getData().toStringFormato2() + " Até: " + this.getDataFim().toStringFormato2()
+					+ "Operada por: " + this.getResponsavel().getNome() + "\nResponsável: "
+					+ this.getResponsavel().getNome() + "\nProdução total: " + this.getProducao()
+					+ "\nProdução média por hora: " + this.getPorHora() + "\n";
+		}
+	
 	}
 }

@@ -102,7 +102,7 @@ public class RelatorioFuncionario {
 		for (int i = 0; i < this.registros.size(); i++) {
 			if (this.registros.get(i) instanceof RegistroDeUso) {
 				RegistroDeUso aux = (RegistroDeUso) this.registros.get(i);
-				ret += aux.toString();
+				ret = ret + aux.toString();
 			} else {
 				RegistroManutencao aux = (RegistroManutencao) this.registros.get(i);
 				ret += aux.toString();

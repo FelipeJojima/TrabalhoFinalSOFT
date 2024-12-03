@@ -16,21 +16,9 @@ public class Login {
 	/**
 	 * Construtor da classe Login que tenta realizar o login com email e senha
 	 * fornecidos.
-	 * 
-	 * @param email Email do usuário tentando logar
-	 * @param senha Senha do usuário tentando logar
 	 */
-	public Login(String email, String senha) {
-		verificaLogin(email, senha); // Verifica o login com as credenciais fornecidas
-	}
+	public Login() {
 
-	/**
-	 * Construtor da classe Login para realizar um novo cadastro de usuário.
-	 * 
-	 * @param novoLogin CadastroUsuario que contém o novo usuário a ser cadastrado
-	 */
-	public Login(CadastroUsuario novoLogin) {
-		novoCadastro(novoLogin); // Realiza o cadastro do novo usuário
 	}
 
 	/**
@@ -115,8 +103,25 @@ public class Login {
 	 */
 	public int excluiCadastro(CadastroUsuario excluido) {
 		if (this.todosUsuarios.remove(excluido)) { // Remove o usuário da lista
+			this.log = 0;
+			this.usuarioLogado = null;
 			return 1; // Exclusão bem-sucedida
 		}
 		return 0; // Exclusão falhou
+	}
+	/**
+	 * Metodo para fazer logoff.
+	 */
+	public void sair() {
+		log = 0;
+		usuarioLogado = null;
+	}
+	
+	/**
+	 * Metodo que recupera todos os usuarios cadastrados. Fins de teste.
+	 * @return Todos os usuarios cadastrados.
+	 */
+	public List<CadastroUsuario> getTodosUsuarios() {
+		return todosUsuarios;
 	}
 }

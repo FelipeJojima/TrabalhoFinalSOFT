@@ -114,7 +114,7 @@ public class TestesRelatorioFuncionario {
 		String relatorioTexto = relatorio.toString();
 		assertTrue(relatorioTexto.contains("Relatorio do funcionario: Ana Costa"),
 				"O relatório deve conter o nome do funcionário.");
-		assertTrue(relatorioTexto.contains("Registro de uso da maquina: Torno CNC"),
+		assertTrue(relatorioTexto.contains("Registro de uso da máquina: Torno CNC"),
 				"O relatório deve conter informações dos registros.");
 	}
 }

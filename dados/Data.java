@@ -187,7 +187,7 @@ public class Data {
 			if (dMes <= mes) {
 				meses = (12 + dMes) - mes;
 			} else {
-				meses = dMes - mes;
+				meses = 12 + (dMes - mes);
 			}
 			return (12 * anos) + meses;
 		}

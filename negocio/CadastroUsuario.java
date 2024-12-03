@@ -89,11 +89,15 @@ public class CadastroUsuario {
 	 * usuário associado for um objeto do tipo Funcionario.
 	 * 
 	 * @param novoContrato O novo contrato a ser atribuído ao funcionário.
+	 * @return 0 para falha na alteração do contrato (o usuário é Gerente) e 1 para
+	 *         alteração bem-sucedida.
 	 */
-	public void alteraContrato(ContratoFuncionario novoContrato) {
+	public int alteraContrato(ContratoFuncionario novoContrato) {
 		if (this.usuario instanceof Funcionario) { // Verifica se o usuário é um Funcionario.
 			((Funcionario) this.usuario).setContrato(novoContrato); // Altera o contrato do funcionário.
+			return 1;
 		}
+		return 0;
 	}
 
 	/**
@@ -101,11 +105,15 @@ public class CadastroUsuario {
 	 * usuário associado for um objeto do tipo Funcionario.
 	 * 
 	 * @param novoGerente O novo gerente responsável pelo funcionário.
+	 * @return 0 para alteração inválida (o usuário é Gerente) e 1 para alteração
+	 *         bem-sucedida.
 	 */
-	public void alteraResponsavel(Gerente novoGerente) {
+	public int alteraResponsavel(Gerente novoGerente) {
 		if (this.usuario instanceof Funcionario) { // Verifica se o usuário é um Funcionario.
 			((Funcionario) this.usuario).setResponsavel(novoGerente); // Altera o responsável do funcionário.
+			return 1;
 		}
+		return 0;
 	}
 
 	/**
